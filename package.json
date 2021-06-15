@@ -1,0 +1,20 @@
+{
+  "name": "nusclubs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rendao1010/nusclubs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rendao1010/nusclubs/issues"
+  },
+  "homepage": "https://github.com/rendao1010/nusclubs#readme"
+}
