@@ -1,0 +1,78 @@
+.svg-icon {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.5em;
+}
+  
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+fill: white;
+}
+
+.svg-icon circle {
+stroke: white;
+stroke-width: 1;
+}
+
+body {
+    background: #121212;
+    font-family: 'Roboto', sans-serif;
+    color: grey;
+    font-weight:300
+}
+
+.cca-container {
+    margin-top: 2rem;
+    border-bottom:1px solid rgb(87, 86, 86);
+    padding-bottom: 1rem;
+}
+
+.link-unstyled {
+    text-decoration: none;
+    color: #cf6679;
+}
+
+.link-unstyled:hover {
+    color: #d82345;
+}
+
+h1 {
+    margin-top: 3rem;
+    color: #cf6679;
+    border-bottom:1px solid rgb(87, 86, 86);
+    padding-bottom: 1rem;
+}
+
+.btn-outline-danger {
+    color: #cf6679;
+}
+
+.btn-outline-danger:hover {
+    background-color: #d82345;
+}
+
+.description {
+    margin-top: 1rem;
+}
+
+footer {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.navbar.scrolled {
+    background: #121212;
+}
+
+h3 {
+    font-size: 100%;
+}
+
+a {
+    color: #cf6679;
+}
+
+a:hover {
+    color: #d82345;
+}
