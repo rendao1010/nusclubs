@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= cca.title %></title>
+</head>
+
+<body>
+    <h1><%= cca.title %></h1>
+    <p><%= cca.description %></p>
+    <h2>Contact Information</h2>
+    <ul>
+        <li>Person-in-Charge: <%= cca.officer %></li>
+        <li>Phone: <%= cca.phone %></li>
+        <li>Email: <%= cca.email %></li>
+    </ul>
+    <form action="/cca/<%= cca._id %>?_method=DELETE" method="POST">
+        <button>Delete CCA</button>
+    </form>
+    <a href="/cca">Back to Index</a>
+    <a href="/cca/<%= cca._id %>/edit">Edit Details</a>
+</body>
+
+</html>
