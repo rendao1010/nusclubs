@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 const mongoose = require('mongoose')
+const ccaRoutes = require('./routes/cca')
+const eventRoutes = require('./routes/event')
 const ejsMate = require('ejs-mate')
 const session = require('express-session')
 const methodOverride = require('method-override')
@@ -61,6 +63,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use('/', userRoutes)
 app.use('/cca', ccaRoutes)
+app.use('/cca/:id/events', eventRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')

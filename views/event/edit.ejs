@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event - <%= event.title %></title>
+</head>
+<body>
+    <h1>Edit Event</h1>
+    <form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Event Title:</label>
+            <input type="text" name="event[title]" id="title" value="<%= event.title %>" required>
+        </div>
+        <div>
+            <label for="description">Event Description:</label>
+            <textarea name="event[description]" id="description" cols="30" rows="5"><%= event.description %></textarea>
+        </div>
+        <div>
+            <label for="start">From:</label>
+            <input type="text" name="event[start]" id="start" placeholder="dd/mm/yy hh.mm" value="<%= event.start %>" required>
+        </div>
+        <div>
+            <label for="end">To:</label>
+            <input type="text" name="event[end]" id="end" placeholder="dd/mm/yy hh.mm" value="<%= event.end %>" required>
+        </div>
+        <button>Update Event</button>
+    </form>
+    <a href="/cca/<%= event.cca._id %>/events/<%= event._id %> ">Back to Event</a>
+</body>
+</html>
