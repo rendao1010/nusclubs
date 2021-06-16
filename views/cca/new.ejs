@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register CCA</title>
+</head>
+
+<body>
+    <h1>Register Your CCA!</h1>
+    <form action="/cca" method="POST">
+        <div>
+            <label for="title">CCA Title:</label>
+            <input type="text" name="cca[title]" id="title" required>
+        </div>
+        <div>
+            <label for="description">Short Description:</label>
+            <textarea name="cca[description]" id="description" cols="30" rows="5"></textarea>
+        </div>
+        <h2>Contact Information</h2>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="cca[phone]" id="phone" required>
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="cca[email]" id="email" required>
+        </div>
+        <div>
+            <label for="officer">Person-in-Charge:</label>
+            <input type="text" name="cca[officer]" id="officer" required>
+        </div>
+        <button>Register</button>
+    </form>
+    <a href="/cca">Back to CCA List</a>
+</body>
+
+</html>
