@@ -1,8 +1,9 @@
 const express = require('express')
-const routere = express.Router()
+const router = express.Router()
 const path = require('path')
 const mongoose = require('mongoose')
 const ccaRoutes = require('./routes/cca')
+const eventRoutes = require('./routes/event')
 const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost:27017/nusclubs', {
@@ -27,6 +28,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 app.use('/cca', ccaRoutes)
+app.use('/cca/:id/events', eventRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
