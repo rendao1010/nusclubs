@@ -8,6 +8,7 @@ router.get('/new', eventControllers.createForm)
 
 router.route('/:eventId')
     .get(eventControllers.showEvent)
+    .post(eventControllers.attendEvent)
     .put(eventControllers.updateEvent)
     .delete(eventControllers.deleteEvent)
 

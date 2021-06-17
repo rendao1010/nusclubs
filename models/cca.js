@@ -7,7 +7,13 @@ const CCASchema = new Schema({
     phone: Number,
     email: String,
     events: String,
-    officer: String
+    officer: String,
+    events: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Event"
+        }
+    ]
 })
 
 module.exports = mongoose.model('CCA', CCASchema)
