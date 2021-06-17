@@ -4,21 +4,20 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navLinks">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="" class="nav-link">NEWS</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">CCA LIST</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">TIMETABLE</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">PROFILE</a>
-                </li>
-            </ul>
+        <div class="navbar collapse navbar-collapse" id="navLinks">
+            <div class="navbar-nav">
+                <a href="" class="nav-link">NEWS</a>
+                <a href="/cca" class="nav-link">CCA LIST</a>
+                <a href="" class="nav-link">TIMETABLE</a>
+            </div>
+            <div class="navbar-nav ml-auto d-flex">
+                <% if (!currentUser) { %>
+                <a href="/login" class="nav-link">LOGIN</a>
+                <a href="/register" class="nav-link">REGISTER</a>
+                <% } else { %>
+                <a href="/logout" class="nav-link">LOGOUT</a>
+                <% } %>
+            </div>
         </div>
     </div>
 </nav>

@@ -8,7 +8,7 @@
     <li>Email: <%= cca.email %></li>
 </ul>
 <form action="/cca/<%= cca._id %>?_method=DELETE" method="POST">
-    <button>Delete CCA</button>
+    <button class="btn btn-danger">Delete CCA</button>
+    <a href="/cca" class="btn btn-info">Back to Index</a>
+    <a href="/cca/<%= cca._id %>/edit" class="btn btn-success">Edit Details</a>
 </form>
-<a href="/cca">Back to Index</a>
-<a href="/cca/<%= cca._id %>/edit">Edit Details</a>

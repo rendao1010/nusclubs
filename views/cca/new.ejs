@@ -1,27 +1,29 @@
 <% layout('layouts/boilerplate') %>
-<h1>Register Your CCA!</h1>
-<form action="/cca" method="POST">
-    <div>
-        <label for="title">CCA Title:</label>
-        <input type="text" name="cca[title]" id="title" required>
-    </div>
-    <div>
-        <label for="description">Short Description:</label>
-        <textarea name="cca[description]" id="description" cols="30" rows="5"></textarea>
-    </div>
-    <h2>Contact Information</h2>
-    <div>
-        <label for="phone">Phone Number:</label>
-        <input type="text" name="cca[phone]" id="phone" required>
-    </div>
-    <div>
-        <label for="email">E-mail:</label>
-        <input type="email" name="cca[email]" id="email" required>
-    </div>
-    <div>
-        <label for="officer">Person-in-Charge:</label>
-        <input type="text" name="cca[officer]" id="officer" required>
-    </div>
-    <button>Register</button>
-</form>
-<a href="/cca">Back to CCA List</a>
+<div class="container-sm justify-content-center align-items-center mt-5">
+    <h1>Register Your CCA!</h1>
+    <form action="/cca" method="POST" class="validated-form" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label">CCA Title:</label>
+            <input type="text" name="cca[title]" id="title" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Short Description:</label>
+            <textarea name="cca[description]" id="description" cols="30" rows="5" required class="form-control"></textarea>
+        </div>
+        <h2>Contact Information</h2>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number:</label>
+            <input type="text" name="cca[phone]" id="phone" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail:</label>
+            <input type="email" name="cca[email]" id="email" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="officer" class="form-label">Person-in-Charge:</label>
+            <input type="text" name="cca[officer]" id="officer" required class="form-control">
+        </div>
+        <button class="btn btn-success">Register</button>
+        <a href="/cca" class="btn btn-info">Back to CCA List</a>
+    </form>
+</div>

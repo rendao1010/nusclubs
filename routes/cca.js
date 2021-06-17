@@ -17,7 +17,6 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
     const cca = new CCA(req.body.cca)
     await cca.save()
-    console.log(cca)
     res.redirect('/cca')
 })
 
