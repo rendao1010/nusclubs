@@ -4,24 +4,24 @@
     <form action="/cca" method="POST" class="validated-form" novalidate>
         <div class="mb-3">
             <label for="title" class="form-label">CCA Title:</label>
-            <input type="text" name="cca[title]" id="title" required class="form-control">
+            <input type="text" name="title" id="title" required class="form-control">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Short Description:</label>
-            <textarea name="cca[description]" id="description" cols="30" rows="5" required class="form-control"></textarea>
+            <textarea name="description" id="description" cols="30" rows="5" required class="form-control"></textarea>
         </div>
         <h2>Contact Information</h2>
         <div class="mb-3">
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="text" name="cca[phone]" id="phone" required class="form-control">
+            <input type="text" name="phone" id="phone" required class="form-control">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">E-mail:</label>
-            <input type="email" name="cca[email]" id="email" required class="form-control">
+            <input type="email" name="email" id="email" required class="form-control">
         </div>
         <div class="mb-3">
-            <label for="officer" class="form-label">Person-in-Charge:</label>
-            <input type="text" name="cca[officer]" id="officer" required class="form-control">
+            <label for="officer" class="form-label">Person-in-Charge (Please enter as per your full name):</label>
+            <input type="text" name="officer" id="officer" required class="form-control">
         </div>
         <button class="btn btn-success">Register</button>
         <a href="/cca" class="btn btn-info">Back to CCA List</a>

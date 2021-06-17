@@ -3,12 +3,35 @@
 <p><%= cca.description %></p>
 <h2>Contact Information</h2>
 <ul>
-    <li>Person-in-Charge: <%= cca.officer %></li>
+    <li>Person-in-Charge: <%= cca.officer.username %></li>
     <li>Phone: <%= cca.phone %></li>
     <li>Email: <%= cca.email %></li>
 </ul>
-<form action="/cca/<%= cca._id %>?_method=DELETE" method="POST">
+<form action="/cca/<%= cca._id %>?_method=DELETE" method="POST" class="mb-5">
     <button class="btn btn-danger">Delete CCA</button>
     <a href="/cca" class="btn btn-info">Back to Index</a>
     <a href="/cca/<%= cca._id %>/edit" class="btn btn-success">Edit Details</a>
+    <% if (!currentUser._id.equals(cca.officer._id)) { %>
+    <a href="/cca/<%= cca._id %>/register" class="btn btn-primary">Register Interest</a>
+    <% } %>
 </form>
+<% if (currentUser._id.equals(cca.officer._id)) { %>
+<h2>Interested Students</h2>
+<% for (let student of cca.interested) { %>
+<div class="card mb-3" style="max-width: 18rem">
+    <div class="card-body">
+        <h5 class="card-title"><%= student.username %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Email: <%= student.email %></li>
+        <li class="list-group-item">Contact: <%= student.phone %></li>
+        <li class="list-group-item">Faculty: <%= student.faculty %></li>
+        <li class="list-group-item">Course of Study: <%= student.course %></li>
+        <li class="list-group-item">Course of Study: <%= student._id %></li>
+    </ul>
+    <div class="card-body">
+        <a href="/cca/<%= cca._id %>/accept/<%= student._id %>" class="card-link">Accept Student</a>
+    </div>
+</div>
+<% } %>
+<% } %>
