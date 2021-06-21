@@ -50,7 +50,7 @@ router.get('/:id/register', async (req, res) => {
     const cca = await CCA.findById(req.params.id)
     cca.interested.push(req.user._id)
     await cca.save()
-    res.redirect('/cca')
+    res.redirect(`/cca/${cca._id}`)
 })
 
 router.get('/:id/accept/:studentId', async (req, res) => {
