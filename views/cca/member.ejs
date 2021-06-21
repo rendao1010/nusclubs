@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate') %>
+<h1>View Students</h1>
+<h2 class="mt-3">Interested Students</h2>
+<% if (cca.interested.length === 0) { %>
+<p>No interested students at the moment.</p>
+<% } else { %>
+<% for (let student of cca.interested) { %>
+<div class="card bg-transparent border-bottom mb-3">
+    <div class="card-body">
+        <h5 class="card-title"><%= student.username %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-transparent text-muted">Email: <%= student.email %></li>
+        <li class="list-group-item bg-transparent text-muted">Faculty: <%= student.faculty %></li>
+        <li class="list-group-item bg-transparent text-muted">Course of Study: <%= student.course %></li>
+        <li class="list-group-item bg-transparent text-muted">Year of Study: <%= student.year %></li>
+    </ul>
+    <div class="card-body">
+        <a href="/cca/<%= cca._id %>/accept/<%= student._id %>" class="card-link">Accept Student</a>
+        <a href="/cca/<%= cca._id %>/reject/<%= student._id %>" class="card-link">Reject Student</a>
+    </div>
+</div>
+<% } %>
+<% } %>
+<h2>Members</h2>
+<% if (cca.members.length === 0) { %>
+<p>No members to view.</p>
+<% } else { %>
+<% for (let member of cca.members) { %>
+<div class="card bg-transparent border-bottom mb-3">
+    <div class="card-body">
+        <h5 class="card-title"><%= member.username %></h5>
+        <% if (!cca.officer.map(x => x._id).includes(member._id)) { %>
+        <a href="/cca/<%= cca._id %>/makeadmin/<%= member._id %>/add">Make Admin</a>
+        <% } else { %>
+        <a href="/cca/<%= cca._id %>/makeadmin/<%= member._id %>/remove">Remove Admin</a>
+        <% } %>
+        <a href="/cca/<%= cca._id %>/remove/<%= member._id %>">Remove Member</a>
+    </div>
+</div>
+<% } %>
+<% } %>
+
+<a href="/cca/<%= cca._id %>" class="btn btn-info">Back to CCA</a>
