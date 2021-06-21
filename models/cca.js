@@ -12,10 +12,10 @@ const CCASchema = new Schema({
             ref: "Event"
         }
     ],
-    officer: {
+    officer: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
+    }],
     members: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
