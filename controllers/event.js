@@ -44,7 +44,9 @@ module.exports.attendEvent = async (req, res) => {
     if (req.user) {
         const event = await Event.findById(eventId)
         event.attending.push(req.user)
+        req.user.attending.push(event)
         await event.save()
+        await req.user.save()
         res.redirect(`/cca/${id}/events/${eventId}`)
     } else {
         res.redirect('/login')

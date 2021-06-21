@@ -6,7 +6,11 @@ const UserSchema = new Schema({
     email: String,
     faculty: String,
     course: String,
-    year: Number
+    year: Number,
+    attending: [{
+        type: Schema.Types.ObjectId,
+        ref: "Event"
+    }]
 })
 
 UserSchema.plugin(passportLocalMongoose)
