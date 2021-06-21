@@ -4,7 +4,7 @@
 <p><%= event.description %></p>
 <h2>Date</h2>
 <p>From <%= event.start %> to <%= event.end %> </p>
-<a href="/cca/<%= event.cca._id %>/events/<%= event._id %>/edit" class="btn btn-info">Edit Event</a>
+
 <a href="/cca/<%= event.cca._id %>" class="btn btn-warning">Back to CCA</a>
 
 <% if (currentUser && !event.attending.includes(currentUser._id)) { %> 
@@ -12,6 +12,10 @@
     <button class="btn btn-success">Attend</button>
 </form>
 <% } %> 
+
+<% if (event.cca.officer.map(x=> x._id).includes(currentUser._id)) { %>
+<a href="/cca/<%= event.cca._id %>/events/<%= event._id %>/edit" class="btn btn-info">Edit Event</a>
 <form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=DELETE" method="POST" class="mt-2">
     <button class="btn btn-sm btn-danger">Delete Event</button>
 </form>
+<% } %> 

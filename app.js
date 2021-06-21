@@ -15,6 +15,7 @@ const Event = require('./models/event')
 
 const ccaRoutes = require('./routes/cca')
 const userRoutes = require('./routes/user')
+const user = require('./models/user')
 
 mongoose.connect('mongodb://localhost:27017/nusclubs', {
     useNewUrlParser: true,
@@ -77,6 +78,14 @@ app.get('/', (req, res) => {
 app.get('/news', async (req, res) => {
     let events = await Event.find().populate('cca', 'title')
     res.render('news', { events })
+})
+
+app.get('/upcoming', async (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login')
+    }
+    const user = await User.findById(req.user._id).populate('attending')
+    res.render('upcoming', { user })
 })
 
 app.listen(3000, () => {
