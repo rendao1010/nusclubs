@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= event.title %> - <%= event.cca.title %> </title>
-</head>
-<body>
-    <h1><%= event.title %></h1>
-    <p><%= event.cca.title %></p>
-    <p><%= event.description %></p>
-    <h2>Date</h2>
-    <p>From <%= event.start %> to <%= event.end %> </p>
-    <a href="/cca/<%= event.cca._id %>/events/<%= event._id %>/edit">Edit Event</a>
-    <form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=DELETE" method="POST">
-        <button>Delete Event</button>
-    </form>
-</body>
-</html>
+<% layout('layouts/boilerplate') %>
+<h1><%= event.title %></h1>
+<p><%= event.cca.title %></p>
+<p><%= event.description %></p>
+<h2>Date</h2>
+<p>From <%= event.start %> to <%= event.end %> </p>
+<a href="/cca/<%= event.cca._id %>/events/<%= event._id %>/edit" class="btn btn-info">Edit Event</a>
+<a href="/cca/<%= event.cca._id %>" class="btn btn-warning">Back to CCA</a>
+
+<% if (currentUser && !event.attending.includes(currentUser._id)) { %> 
+<form action="/cca/<%= event.cca._id %>/events/<%= event._id %>" method="POST" class="mt-2">
+    <button class="btn btn-success">Attend</button>
+</form>
+<% } %> 
+<form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=DELETE" method="POST" class="mt-2">
+    <button class="btn btn-sm btn-danger">Delete Event</button>
+</form>

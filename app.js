@@ -11,6 +11,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 
+const Event = require('./models/event')
+
 const ccaRoutes = require('./routes/cca')
 const userRoutes = require('./routes/user')
 
@@ -70,6 +72,11 @@ app.use('/cca/:id/events', eventRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
+})
+
+app.get('/news', async (req, res) => {
+    let events = await Event.find().populate('cca', 'title')
+    res.render('news', { events })
 })
 
 app.listen(3000, () => {

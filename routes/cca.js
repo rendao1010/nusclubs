@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const cca = await CCA.findById(req.params.id).populate('officer').populate('interested')
+    const cca = await CCA.findById(req.params.id).populate('officer').populate('interested').populate('events')
     res.render('cca/show', { cca })
 })
 

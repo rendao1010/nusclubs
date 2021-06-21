@@ -9,7 +9,13 @@ const eventSchema = new Schema({
     cca: {
         type: Schema.Types.ObjectId,
         ref: 'CCA'
-    }
+    },
+    attending: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 })
 
 module.exports = mongoose.model("Event", eventSchema)

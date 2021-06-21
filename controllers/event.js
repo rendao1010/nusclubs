@@ -17,9 +17,12 @@ module.exports.editForm = async (req, res) => {
 }
 
 module.exports.createEvent = async (req, res) => {
+    const cca = await CCA.findById(req.params.id)
     const event = new Event(req.body.event)
     event.cca = req.params.id
+    cca.events.push(event)
     await event.save()
+    await cca.save()
     res.redirect(`/cca/${req.params.id}/events/${event._id}`)
 }
 
@@ -34,4 +37,16 @@ module.exports.deleteEvent = async (req, res) => {
     const { id, eventId } = req.params
     await Event.findByIdAndDelete(eventId)
     res.redirect(`/cca/${id}`)
+}
+
+module.exports.attendEvent = async (req, res) => {
+    const { id, eventId } = req.params
+    if (req.user) {
+        const event = await Event.findById(eventId)
+        event.attending.push(req.user)
+        await event.save()
+        res.redirect(`/cca/${id}/events/${eventId}`)
+    } else {
+        res.redirect('/login')
+    }
 }

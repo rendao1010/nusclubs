@@ -6,7 +6,12 @@ const CCASchema = new Schema({
     description: String,
     phone: Number,
     email: String,
-    events: String,
+    events: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Event"
+        }
+    ],
     officer: {
         type: Schema.Types.ObjectId,
         ref: 'User'
