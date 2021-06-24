@@ -1,8 +1,9 @@
 const Event = require('../models/event')
 const CCA = require('../models/cca')
+const { cloudinary } = require('../cloudinary')
 
 module.exports.showEvent = async (req, res) => {
-    const event = await Event.findById(req.params.eventId).populate('cca', 'title')
+    const event = await Event.findById(req.params.eventId).populate('cca')
     res.render('event/show', { event })
 }
 
@@ -19,6 +20,7 @@ module.exports.editForm = async (req, res) => {
 module.exports.createEvent = async (req, res) => {
     const cca = await CCA.findById(req.params.id)
     const event = new Event(req.body.event)
+    event.image = { url: req.file.path, filename: req.file.filename }
     event.cca = req.params.id
     cca.events.push(event)
     await event.save()
@@ -29,7 +31,17 @@ module.exports.createEvent = async (req, res) => {
 module.exports.updateEvent = async (req, res) => {
     const { id, eventId } = req.params
     const event = await Event.findByIdAndUpdate(eventId, { ...req.body.event })
+    if (req.file) {
+        if (event.image) {
+            cloudinary.uploader.destroy(event.image.filename)
+        }
+        event.image = { url: req.file.path, filename: req.file.filename }
+    }
     await event.save()
+    if (req.body.delete) {
+        await cloudinary.uploader.destroy(req.body.delete)
+        await event.updateOne({ $unset: { image: "" } })
+    }
     res.redirect(`/cca/${id}/events/${eventId}`)
 }
 

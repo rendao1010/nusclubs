@@ -1,22 +1,32 @@
 <% layout('layouts/boilerplate') %>
 <h1>Edit Event</h1>
-<form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=PUT" method="POST">
-    <div>
-        <label for="title">Event Title:</label>
-        <input type="text" name="event[title]" id="title" value="<%= event.title %>" required>
+<form action="/cca/<%= event.cca._id %>/events/<%= event._id %>?_method=PUT" method="POST" class="validated-form mb-3" enctype="multipart/form-data" novalidate>
+    <div class="mb-3">
+        <label for="title" class="form-label">Event Title:</label>
+        <input type="text" name="event[title]" id="title" value="<%= event.title %>" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Event Description:</label>
+        <textarea name="event[description]" id="description" cols="30" rows="5" class="form-control"><%= event.description %></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="start" class="form-label">From:</label>
+        <input type="text" name="event[start]" id="start" placeholder="dd/mm/yy hh.mm" value="<%= event.start %>" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="end" class="form-label">To:</label>
+        <input type="text" name="event[end]" id="end" placeholder="dd/mm/yy hh.mm" value="<%= event.end %>" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Change Poster</label>
+        <input type="file" name="event[image]" id="image" class="form-control">
+    </div>
+    <div class="form-check-inline mb-3">
+        <label for="delete">Delete Poster</label>
+        <input type="checkbox" name="delete" id="delete" value="<%= event.image.filename %> ">
     </div>
     <div>
-        <label for="description">Event Description:</label>
-        <textarea name="event[description]" id="description" cols="30" rows="5"><%= event.description %></textarea>
+        <button class="btn btn-info">Update Event</button>
     </div>
-    <div>
-        <label for="start">From:</label>
-        <input type="text" name="event[start]" id="start" placeholder="dd/mm/yy hh.mm" value="<%= event.start %>" required>
-    </div>
-    <div>
-        <label for="end">To:</label>
-        <input type="text" name="event[end]" id="end" placeholder="dd/mm/yy hh.mm" value="<%= event.end %>" required>
-    </div>
-    <button>Update Event</button>
 </form>
-<a href="/cca/<%= event.cca._id %>/events/<%= event._id %> ">Back to Event</a>
+<a href="/cca/<%= event.cca._id %>/events/<%= event._id %>" class="btn btn-warning">Back to Event</a>
