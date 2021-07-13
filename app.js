@@ -15,12 +15,18 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const mongoSanitize = require('express-mongo-sanitize')
 const User = require('./models/user')
+<<<<<<< HEAD
+const dbUrl = process.env.DB_URL
+
+=======
+>>>>>>> 7ed9b4a82b0b4e9f06228e9b9818bce69babbae6
 const Event = require('./models/event')
 
 const ccaRoutes = require('./routes/cca')
 const userRoutes = require('./routes/user')
 
-mongoose.connect('mongodb://localhost:27017/nusclubs', {
+// local address: 'mongodb://localhost:27017/nusclubs'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -80,7 +86,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/news', async (req, res) => {
-    let events = await Event.find().populate('cca', 'title')
+    let events = await Event.find({}).populate('cca', 'title')
+    console.log(events)
     res.render('news', { events })
 })
 

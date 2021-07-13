@@ -3,7 +3,7 @@ const CCA = require('../models/cca')
 const { cloudinary } = require('../cloudinary')
 
 module.exports.showEvent = async (req, res) => {
-    const event = await Event.findById(req.params.eventId).populate('cca')
+    const event = await Event.findById(req.params.eventId).populate('cca').populate('attending', 'username')
     res.render('event/show', { event })
 }
 
@@ -59,6 +59,7 @@ module.exports.attendEvent = async (req, res) => {
         req.user.attending.push(event)
         await event.save()
         await req.user.save()
+        req.flash('success', 'Successfully registered attendance for event!')
         res.redirect(`/cca/${id}/events/${eventId}`)
     } else {
         res.redirect('/login')
