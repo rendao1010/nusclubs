@@ -1,5 +1,18 @@
 <% layout('layouts/boilerplate') %>
 <h1>CCA Index Page</h1>
+<form action="/cca/search" method="POST">
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <input class="form-control bg-transparent border-0 border-bottom" type="text" , name="search"
+                    placeholder="Search CCA">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-danger">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
 <div>
     <ul>
         <% for (let cca of ccas) { %>
