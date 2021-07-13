@@ -14,6 +14,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
+const dbUrl = process.env.DB_URL
 
 const Event = require('./models/event')
 
@@ -21,7 +22,8 @@ const ccaRoutes = require('./routes/cca')
 const userRoutes = require('./routes/user')
 const user = require('./models/user')
 
-mongoose.connect('mongodb://localhost:27017/nusclubs', {
+// local address: 'mongodb://localhost:27017/nusclubs'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -80,7 +82,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/news', async (req, res) => {
-    let events = await Event.find().populate('cca', 'title')
+    let events = await Event.find({}).populate('cca', 'title')
+    console.log(events)
     res.render('news', { events })
 })
 
