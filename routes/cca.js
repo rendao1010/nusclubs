@@ -22,6 +22,16 @@ router.post('/', async (req, res) => {
     res.redirect('/cca')
 })
 
+router.post('/search', (req, res) => {
+    res.redirect(`/cca/search/${req.body.search}`)
+})
+
+router.get('/search/:query', async (req, res) => {
+    const { query } = req.params
+    const ccas = await CCA.find({ title: new RegExp(query, 'i') })
+    res.render('cca/index', { ccas })
+})
+
 router.get('/:id', async (req, res) => {
     const cca = await CCA.findById(req.params.id).populate('officer').populate('interested').populate('events')
     res.render('cca/show', { cca })

@@ -13,13 +13,12 @@ const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
+const mongoSanitize = require('express-mongo-sanitize')
 const User = require('./models/user')
-
 const Event = require('./models/event')
 
 const ccaRoutes = require('./routes/cca')
 const userRoutes = require('./routes/user')
-const user = require('./models/user')
 
 mongoose.connect('mongodb://localhost:27017/nusclubs', {
     useNewUrlParser: true,
@@ -39,6 +38,7 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize())
 
 const sessionConfig = {
     secret: 'samplesecret',
