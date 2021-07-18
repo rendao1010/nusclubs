@@ -53,6 +53,15 @@ h1 {
     background-color: #6200EE;
 }
 
+.btn-outline-secondary {
+    color: #03DAC6;
+    border-color: #03DAC6;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #03DAC6;
+}
+
 .btn-outline-danger {
     color: #cf6679;
     border-color: #cf6679;

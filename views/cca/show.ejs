@@ -50,7 +50,7 @@
                     <% } %>
                         <a href="/cca" class="btn btn-outline-danger">Back to Index</a>
                         <% if (currentUser && !cca.interested.map(x => x._id).includes(currentUser._id) && !cca.officer.map(x => x._id).includes(currentUser._id)) { %>
-                            <a href="/cca/<%= cca._id %>/register" class="btn btn-outline-primary">Register Interest</a>
+                            <a href="/cca/<%= cca._id %>/register" class="btn btn-outline-secondary">Register Interest</a>
                             <% } %>
             
 </div>
