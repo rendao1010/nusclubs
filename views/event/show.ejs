@@ -1,7 +1,9 @@
 <% layout('layouts/boilerplate') %>
 <h1><%= event.title %></h1>
 <p><%= event.cca.title %></p>
+<% if (event.image) { %> 
 <img src="<%= event.image.thumbnail %> " alt="">
+<% } %> 
 <p><%= event.description %></p>
 <h2>Date</h2>
 <p>From <%= event.start %> to <%= event.end %> </p>

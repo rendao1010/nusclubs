@@ -3,13 +3,13 @@
 <h1>News</h1>
 
 <% for (let event of events) { %>
-    <div class="card bg-transparent">
+    <div class="card bg-transparent border mb-2">
         <div class="card-body">
             <h5 class="card-title"><%= event.title %> </h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= event.cca.title %></h6>
             <h6 class="card-subtitle mb-2 text-muted">From <%= event.start %> to <%= event.end %></h6>
             <p class="card-text"><%= event.description %> </p>
-            <a href="/cca/<%= event.cca._id %>/events/<%= event._id %>" class="card-link btn btn-sm btn-primary">View More</a>
+            <a href="/cca/<%= event.cca._id %>/events/<%= event._id %>" class="card-link btn btn-sm btn-outline-primary">View More</a>
         </div>
     </div>
 <% } %> 

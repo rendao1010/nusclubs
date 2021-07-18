@@ -20,7 +20,9 @@ module.exports.editForm = async (req, res) => {
 module.exports.createEvent = async (req, res) => {
     const cca = await CCA.findById(req.params.id)
     const event = new Event(req.body.event)
-    event.image = { url: req.file.path, filename: req.file.filename }
+    if (req.file) {
+        event.image = { url: req.file.path, filename: req.file.filename }
+    }
     event.cca = req.params.id
     cca.events.push(event)
     await event.save()
