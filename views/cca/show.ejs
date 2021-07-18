@@ -1,35 +1,68 @@
 <% layout('layouts/boilerplate') %>
-<h1><%= cca.title %></h1>
-<p><%= cca.description %></p>
-
-<h2>Contact Information</h2>
-<ul>
-    <li>Person-in-Charge: <%= cca.officer[0].username %></li>
-    <li>Phone: <%= cca.phone %></li>
-    <li>Email: <%= cca.email %></li>
-</ul>
-
-<h2 class="mt-3">Events</h2>
-<% for (let event of cca.events) { %>
-<div class="card bg-transparent border-bottom mb-3">
-    <div class="card-body">
-        <h5 class="card-title"><%= event.title %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">From <%= event.start %> to <%= event.end %></h6>
-        <p class="card-text"><%= event.description %></p>
-        <a href="/cca/<%= cca._id %>/events/<%= event._id %>" class="card-link btn btn-sm btn-primary">View More</a>
-    </div>
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/cca/<%= cca._id %>/events/new">Add Event</a>
+    <a href="/cca/<%= cca._id %>/viewmembers">View Students</a>
+    <a href="/cca/<%= cca._id %>/edit">Edit Details</a>
+    <form action="/cca/<%= cca._id %>?_method=DELETE" method="POST" class="mb-5">
+    <button class="btn btn-sm btn-outline-danger">Delete CCA</button>
+    </form>
 </div>
-<% } %>
 
-<form action="/cca/<%= cca._id %>?_method=DELETE" method="POST" class="mb-5">
-    <% if (currentUser && cca.officer.map(x => x._id).includes(currentUser._id)) { %>
-    <a href="/cca/<%= cca._id %>/events/new" class="btn btn-warning">Add Event</a>
-    <a href="/cca/<%= cca._id %>/viewmembers" class="btn btn-light">View Students</a>
-    <a href="/cca/<%= cca._id %>/edit" class="btn btn-success">Edit Details</a>
-    <button class="btn btn-danger">Delete CCA</button>
-    <% } %>
-    <a href="/cca" class="btn btn-info">Back to Index</a>
-    <% if (currentUser && !cca.interested.map(x => x._id).includes(currentUser._id) && !cca.officer.map(x => x._id).includes(currentUser._id)) { %>
-    <a href="/cca/<%= cca._id %>/register" class="btn btn-primary">Register Interest</a>
-    <% } %>
-</form>
+<div id="main">
+    <h1>
+        <%= cca.title %>
+    </h1>
+    <p>
+        <%= cca.description %>
+    </p>
+    
+    <h2>Contact Information</h2>
+    <ul>
+        <li>Person-in-Charge: <%= cca.officer[0].username %>
+        </li>
+        <li>Phone: <%= cca.phone %>
+        </li>
+        <li>Email: <%= cca.email %>
+        </li>
+    </ul>
+    
+    <h2 class="mt-3">Events</h2>
+    <% for (let event of cca.events) { %>
+        <div class="card bg-transparent border-bottom mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= event.title %>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">From <%= event.start %> to <%= event.end %>
+                </h6>
+                <p class="card-text">
+                    <%= event.description %>
+                </p>
+                <a href="/cca/<%= cca._id %>/events/<%= event._id %>" class="card-link btn btn-sm btn-outline-primary">View
+                    More</a>
+            </div>
+        </div>
+        <% } %>
+
+                <% if (currentUser && cca.officer.map(x => x._id).includes(currentUser._id)) { %>
+                    <button class="openbtn btn btn-outline-primary" onclick="openNav()">Manage</button>
+                    <% } %>
+                        <a href="/cca" class="btn btn-outline-danger">Back to Index</a>
+                        <% if (currentUser && !cca.interested.map(x => x._id).includes(currentUser._id) && !cca.officer.map(x => x._id).includes(currentUser._id)) { %>
+                            <a href="/cca/<%= cca._id %>/register" class="btn btn-outline-primary">Register Interest</a>
+                            <% } %>
+            
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+</script>

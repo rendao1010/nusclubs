@@ -15,11 +15,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const mongoSanitize = require('express-mongo-sanitize')
 const User = require('./models/user')
-<<<<<<< HEAD
 const dbUrl = process.env.DB_URL
 
-=======
->>>>>>> 7ed9b4a82b0b4e9f06228e9b9818bce69babbae6
 const Event = require('./models/event')
 
 const ccaRoutes = require('./routes/cca')
