@@ -1,15 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const { isLoggedIn } = require('../middleware')
+const ccaControllers = require('../controllers/cca')
 
 const app = express()
 
 const CCA = require('../models/cca')
 
-router.get('/', async (req, res) => {
-    const ccas = await CCA.find({})
-    res.render('cca/index', { ccas })
-})
+router.route('/')
+    .get(ccaControllers.showCCA)
 
 router.get('/new', (req, res) => {
     res.render('cca/new')
