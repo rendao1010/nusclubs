@@ -84,7 +84,7 @@ app.get('/', (req, res) => {
 
 app.get('/news', async (req, res) => {
     let events = await Event.find({}).populate('cca', 'title')
-    console.log(events)
+    events.reverse()
     res.render('news', { events })
 })
 
@@ -93,6 +93,7 @@ app.get('/upcoming', async (req, res) => {
         return res.redirect('/login')
     }
     const user = await User.findById(req.user._id).populate('attending')
+    user.attending.sort((a, b) => (a.start > b.start) ? 1 : -1)
     res.render('upcoming', { user })
 })
 

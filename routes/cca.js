@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { isLoggedIn } = require('../middleware')
 
 const app = express()
 
@@ -14,7 +15,7 @@ router.get('/new', (req, res) => {
     res.render('cca/new')
 })
 
-router.post('/', async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
     const { title, description, phone, email } = req.body
     const cca = new CCA({ title, description, phone, email })
     cca.officer.push(req.user._id)
