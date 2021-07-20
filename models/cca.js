@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Event = require('./event')
 const Schema = mongoose.Schema
 
 const CCASchema = new Schema({
@@ -24,6 +25,16 @@ const CCASchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
+})
+
+CCASchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await Event.deleteMany({
+            _id: {
+                $in: doc.events
+            }
+        })
+    }
 })
 
 module.exports = mongoose.model('CCA', CCASchema)
