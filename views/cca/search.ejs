@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate') %>
+<h1>CCA Index Page</h1>
+<form action="/cca/search" method="POST">
+    <div class="container mb-3">
+        <div class="row">
+            <div class="col-10">
+                <input class="form-control bg-transparent border-0 border-bottom" type="text" , name="search"
+                    placeholder="Search CCA">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-danger">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <% for (let cca of ccas) { %>
+    <div class="card bg-transparent border mb-2">
+        <div class="card-body">
+                <a href="/cca/<%= cca._id %>">
+                    <h5 class="card-title">
+                        <%= cca.title %>
+                    </h5>
+                </a>
+        </div>
+    </div>
+    <% } %>
+</div>
+<a href="/cca/new">Register New CCA</a>
+<a href="/cca">Back to CCA List</a>
