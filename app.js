@@ -88,12 +88,21 @@ app.get('/news', async (req, res) => {
     res.render('news', { events })
 })
 
+// 21/07/2021 00.00
 app.get('/upcoming', async (req, res) => {
     if (!req.user) {
         return res.redirect('/login')
     }
     const user = await User.findById(req.user._id).populate('attending')
-    user.attending.sort((a, b) => (a.start > b.start) ? 1 : -1)
+    user.attending.sort((a, b) => {
+        var date1 = new Date(a.start.slice(6,10), a.start.slice(3,5), a.start.slice(0,2), a.start.slice(11,13), a.start.slice(-2), 00)
+        var date2 = new Date(b.start.slice(6,10), b.start.slice(3,5), b.start.slice(0,2), b.start.slice(11,13), b.start.slice(-2), 00)
+        if (date1 > date2) {
+            return 1
+        } else {
+            return -1
+        }
+    })
     res.render('upcoming', { user })
 })
 
